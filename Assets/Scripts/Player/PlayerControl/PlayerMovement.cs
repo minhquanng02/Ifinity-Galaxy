@@ -5,7 +5,14 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody2D rgb;
-    float speed = 10f;
+
+    PlayerSystem playerSystem;
+
+    private void Start()
+    {
+        if (playerSystem == null)
+            playerSystem = GameObject.Find("PlayerSystem").GetComponent<PlayerSystem>();
+    }
 
     public void Move(float buttonX, float buttonY)
     {
@@ -13,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
         move.x = buttonX;
         move.y = buttonY;
 
-        rgb.MovePosition(rgb.position + move * speed * Time.deltaTime);
+        rgb.MovePosition(rgb.position + move * playerSystem.moveSpeed * Time.deltaTime);
     }
 
     public void Rotate(Vector2 mousePos)

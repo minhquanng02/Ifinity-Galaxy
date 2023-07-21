@@ -6,12 +6,17 @@ using UnityEngine;
 public class PlayerShoot : MonoBehaviour
 {
     public ObjectPool objectPool;
-
-    float nextFireTime = 0f;
-    float attackRate = 2f;
-
     public Transform firePoint;
 
+    float nextFireTime = 0f;
+
+    PlayerSystem playerSystem;
+
+    private void Start()
+    {
+        if (playerSystem == null)
+            playerSystem = GameObject.Find("PlayerSystem").GetComponent<PlayerSystem>();
+    }
 
 
     public void Shoot()
@@ -26,7 +31,7 @@ public class PlayerShoot : MonoBehaviour
                 bullet.transform.rotation = firePoint.transform.rotation;
 
                 bullet.SetActive(true);
-                nextFireTime = Time.time + 1f / attackRate;
+                nextFireTime = Time.time + 1f / playerSystem.attackSpeed;
             }
                 
             

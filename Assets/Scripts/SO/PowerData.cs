@@ -11,9 +11,12 @@ using UnityEngine;
         public int attackDamage = 40;
         public int EnragedAttackDamage = 60;
 
-        public float attackRate = 2;
-        public float attackRange = 1f;
+        public float attackSpeed = 2;
+        public float attackRange = 50f;
+        public float bulletSpeed = 10f;
 
-        public float speed = 8;
+        public float moveSpeed = 8;
+
+        public int xpDrop = 40;
     }
 
