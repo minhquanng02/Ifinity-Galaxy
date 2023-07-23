@@ -11,7 +11,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        enemySystem = GetComponentInChildren<EnemySystem>();
+        enemySystem = GetComponent<EnemySystem>();
         rgb = GetComponent<Rigidbody2D>();
         player = GameObject.Find("Player");
     }

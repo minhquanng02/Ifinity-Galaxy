@@ -3,38 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class PlayerShoot : MonoBehaviour
+public class PlayerShoot : Shooting
 {
-    public ObjectPool objectPool;
-    public Transform firePoint;
-
-    float nextFireTime = 0f;
-
     PlayerSystem playerSystem;
 
-    private void Start()
+    protected override void Start()
     {
+        base.Start();
         if (playerSystem == null)
             playerSystem = GameObject.Find("PlayerSystem").GetComponent<PlayerSystem>();
+        attackSpeed = playerSystem.attackSpeed;
     }
 
-
-    public void Shoot()
+    private void Update()
     {
-        GameObject bullet = objectPool.instance.GetPooledObject();
+        attackSpeed = playerSystem.attackSpeed;
 
-        if (bullet != null)
-        {
-            if (Time.time >= nextFireTime)
-            {
-                bullet.transform.position = firePoint.transform.position;
-                bullet.transform.rotation = firePoint.transform.rotation;
-
-                bullet.SetActive(true);
-                nextFireTime = Time.time + 1f / playerSystem.attackSpeed;
-            }
-                
-            
-        }
     }
 }

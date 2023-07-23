@@ -11,7 +11,7 @@ public class GameSpawner : MonoBehaviour
 
     private void Start()
     {
-        Invoke("SpawnRandomEnemy", Random.Range(3, 5));
+        Invoke("SpawnRandomEnemy", Random.Range(3,5));
     }
 
     void SpawnRandomEnemy()

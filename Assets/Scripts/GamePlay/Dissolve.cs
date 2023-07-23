@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Dissolve : MonoBehaviour
 {
-    public bool isDissolving = false;
     float fade = 1f;
 
     public SpriteRenderer[] spriteRenderers;
     public Material[] materials;
     public Material materialPrefab;
+
+    public Damageable dmg;
     private void Start()
     {
+        dmg = GetComponent<Damageable>();
         materials = new Material[spriteRenderers.Length];
         for (int i = 0; i < spriteRenderers.Length; i++)
         {
@@ -27,14 +29,13 @@ public class Dissolve : MonoBehaviour
 
     public void Dissolving()
     {
-        if (isDissolving)
+        if (dmg.isDead)
         {
             fade -= Time.deltaTime;
 
             if (fade <= 0)
             {
                 fade = 0f;
-                isDissolving = false;
             }
 
             foreach (Material material in materials)

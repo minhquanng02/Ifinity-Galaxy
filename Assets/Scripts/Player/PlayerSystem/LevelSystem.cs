@@ -5,10 +5,14 @@ using UnityEngine;
 public class LevelSystem : MonoBehaviour
 {
     public int level;
-    public int experience;
-    public int experienceToNextLevel;
+    public float experience;
+    public float experienceToNextLevel;
+    public int point;
 
     public ValueBar xpBar;
+
+   
+
 
     public LevelSystem()
     {
@@ -24,7 +28,7 @@ public class LevelSystem : MonoBehaviour
 
     }
 
-    public void AddExperience (int amount)
+    public void AddExperience (float amount)
     {
         experience += amount;
         xpBar.SetValue(experience);
@@ -32,12 +36,15 @@ public class LevelSystem : MonoBehaviour
         while (experience >= experienceToNextLevel)
         {
             level++;
+            point++;
             experience -= experienceToNextLevel;
 
-            experienceToNextLevel  += experienceToNextLevel*15 / 100;
+            experienceToNextLevel  += experienceToNextLevel * 0.15f;
 
-            xpBar.SetValue(experience);
             xpBar.SetMaxValue(experienceToNextLevel);
+            xpBar.SetValue(experience);
         }
     }
+
+    
 }

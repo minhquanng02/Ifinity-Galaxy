@@ -19,5 +19,6 @@ MonoBehaviour:
   attackSpeed: 2
   attackRange: 20
   bulletSpeed: 10
+  lifeSteal: 0
   moveSpeed: 8
   xpDrop: 40

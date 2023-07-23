@@ -10,7 +10,7 @@ public class EnemyDrop : MonoBehaviour
     {
         level = GameObject.Find("Player").GetComponentInChildren<LevelSystem>();
     }
-    public void Drop(int xpValue)
+    public void Drop(float xpValue)
     {
         level.AddExperience(xpValue);
     }

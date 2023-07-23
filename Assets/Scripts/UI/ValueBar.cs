@@ -9,14 +9,14 @@ public class ValueBar : MonoBehaviour
     public Slider slider;
     public Image fill;
 
-    public void SetMaxValue(int value)
+    public void SetMaxValue(float value)
     {
         slider.maxValue = value;
         slider.value = value;
 
     }
 
-    public void SetValue(int value)
+    public void SetValue(float value)
     {
         slider.value = value;
     }

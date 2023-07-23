@@ -5,23 +5,29 @@ using UnityEngine;
 public class EnemySystem : MonoBehaviour
 {
     public PowerData powerData;
+    public LevelSystem levelSystem;
 
     public float bulletSpeed;
     public float attackRange;
     public float attackSpeed;
     public float moveSpeed;
-    public int maxHealth;
-    public int attackDamage;
-    public int xpDrop;
+    public float maxHealth;
+    public float attackDamage;
+    public float xpDrop;
 
-    private void Start()
+    private void Awake()
     {
-        bulletSpeed = powerData.bulletSpeed;
+        levelSystem = GameObject.Find("Player").GetComponent<LevelSystem>();
+
+        bulletSpeed = powerData.bulletSpeed + powerData.bulletSpeed * levelSystem.level * 0.1f;
         attackRange = powerData.attackRange;
-        attackSpeed = powerData.attackSpeed;
+        attackSpeed = powerData.attackSpeed + powerData.attackSpeed * levelSystem.level * 0.1f;
         moveSpeed = powerData.moveSpeed;
-        maxHealth = powerData.maxHealth;
-        attackDamage = powerData.attackDamage;
-        xpDrop = powerData.xpDrop;
+        maxHealth = powerData.maxHealth + powerData.maxHealth * levelSystem.level * 0.1f;
+        attackDamage = powerData.attackDamage + powerData.attackDamage * levelSystem.level * 0.1f;
+        xpDrop = powerData.xpDrop + powerData.xpDrop * levelSystem.level * 0.1f;
     }
 }
+
+
+

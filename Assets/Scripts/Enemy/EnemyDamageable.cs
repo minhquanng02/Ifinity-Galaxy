@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class EnemyDamageable : Damageable
 {
-    public EnemySystem enemySystem;
-    EnemyDrop enemyDrop;
+     public EnemySystem enemySystem;
+     EnemyDrop enemyDrop;
+    
 
     protected override void Start()
-    {
+    { 
+        
+        if (enemyDrop == null)
+            enemyDrop = GetComponent<EnemyDrop>();
         maxHealth = enemySystem.maxHealth;
-        enemyDrop = GetComponent<EnemyDrop>();
+
         base.Start();
+        
     }
+
+    
 
     protected override void Die()
     {
         base.Die();
         enemyDrop.Drop(enemySystem.xpDrop);
     }
+
+    
 }

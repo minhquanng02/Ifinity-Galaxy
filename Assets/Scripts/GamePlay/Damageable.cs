@@ -5,20 +5,21 @@ using UnityEngine;
 
 public class Damageable : MonoBehaviour
 {
-    protected int maxHealth;
-    public int currentHealth = 0;
+    public float maxHealth;
+    public float currentHealth = 0;
 
-    protected int waitTime = 2;
+    protected int waitTime = 1;
+    public bool isDead = false;
 
-    public Dissolve dissolve;
+    protected Dissolve dissolve;
 
-    Collider2D cld;
 
     
 
     protected virtual void Start()
     {
-        cld = GetComponent<Collider2D>();
+        if (dissolve == null)
+            dissolve = GetComponent<Dissolve>();
         if (currentHealth == 0)
         {
             currentHealth = maxHealth;
@@ -26,25 +27,30 @@ public class Damageable : MonoBehaviour
 
     }
 
-    public virtual void TakeDamage(int attackDamage)
+    public virtual void TakeDamage(float attackDamage)
     {
-        currentHealth -= attackDamage;
-
-        if (currentHealth <= 0)
+        if (!isDead)
         {
-            Die();
+
+            currentHealth -= attackDamage;
+
+            if (currentHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
+    
+
     protected virtual void Die()
     {
-        dissolve.isDissolving = true;
-        cld.enabled = false;
-
+        isDead = true;
         Invoke("DestroyOnDead", waitTime);
+
     }
 
-    void DestroyOnDead()
+    protected virtual void DestroyOnDead()
     {
         Destroy(gameObject);
     }

@@ -5,18 +5,14 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public ObjectPool objectPool;
+    protected float attackDamage;
+    protected float attackRange;
+    protected float bulletSpeed;
+    
 
-    PlayerSystem playerSystem;
-
-    private void Start()
+    protected virtual void Update()
     {
-        if (playerSystem == null)
-        playerSystem = GameObject.Find("PlayerSystem").GetComponent<PlayerSystem>();
-    }
-
-    void Update()
-    {
-        transform.Translate(Vector3.up * Time.deltaTime * playerSystem.bulletSpeed);
+        transform.Translate(Vector3.up * Time.deltaTime * bulletSpeed);
 
         DestroyByDistance();
     }
@@ -26,28 +22,29 @@ public class Bullet : MonoBehaviour
         var cam = Camera.main;
         var distanceFromCamera = Vector3.Distance(transform.position, cam.transform.position);
 
-        if (distanceFromCamera > playerSystem.attackRange)
+        if (distanceFromCamera > attackRange)
         {
             ResetObject();
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+
+    protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
         ResetObject();
         GameObject effect = objectPool.instance.GetPooledObject();
         effect.transform.position = transform.position;
         effect.SetActive(true);
 
-        Damageable damageable = collision.gameObject.GetComponent<EnemyDamageable>();
+        Damageable damageable = collision.gameObject.GetComponent<Damageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(playerSystem.attackDamage);
+            damageable.TakeDamage(attackDamage);
         }
     }
 
 
-    void ResetObject()
+    protected void ResetObject()
     {
         gameObject.SetActive(false);
     }
