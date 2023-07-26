@@ -9,7 +9,7 @@ public class Shooting : MonoBehaviour
     public Damageable dmg;
 
 
-    float nextFireTime = 0f;
+    protected float nextFireTime = 0f;
     protected float attackSpeed;
 
     protected virtual void Start()

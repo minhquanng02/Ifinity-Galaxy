@@ -8,7 +8,7 @@ public class PlayerMovement : MonoBehaviour
 
     PlayerSystem playerSystem;
 
-    private void Start()
+    protected virtual void Start()
     {
         if (playerSystem == null)
             playerSystem = GameObject.Find("PlayerSystem").GetComponent<PlayerSystem>();

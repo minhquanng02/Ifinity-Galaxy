@@ -20,4 +20,6 @@ public class PlayerShoot : Shooting
         attackSpeed = playerSystem.attackSpeed;
 
     }
+
+    
 }

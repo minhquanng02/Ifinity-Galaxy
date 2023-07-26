@@ -17,8 +17,8 @@ MonoBehaviour:
   attackDamage: 5
   EnragedAttackDamage: 60
   attackSpeed: 0.2
-  attackRange: 10
-  bulletSpeed: 10
+  attackRange: 20
+  bulletSpeed: 7
   lifeSteal: 0
   moveSpeed: 2
   xpDrop: 40

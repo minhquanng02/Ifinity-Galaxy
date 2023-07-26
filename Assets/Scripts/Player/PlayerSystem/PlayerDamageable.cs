@@ -7,14 +7,18 @@ public class PlayerDamageable : Damageable
     public ValueBar healthBar;
     public PlayerSystem playerSystem;
 
-    
-    protected override void Start()
+    private void Awake()
     {
         if (playerSystem == null)
             playerSystem = GameObject.Find("PlayerSystem").GetComponent<PlayerSystem>();
-        maxHealth = playerSystem.maxHealth;
+        maxHealth = 100;
+    }
 
+    protected override void Start()
+    {
+        
         base.Start();
+        
 
         healthBar.SetMaxValue(playerSystem.maxHealth);
         healthBar.SetValue(currentHealth);

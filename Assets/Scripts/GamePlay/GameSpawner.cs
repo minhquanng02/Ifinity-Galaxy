@@ -8,10 +8,20 @@ public class GameSpawner : MonoBehaviour
     public GameObject[] enemyPrefab;
 
     float spawnRange = 50;
+    public float spawnRate = 1f;
+    public float spawnTime = 3;
 
     private void Start()
     {
-        Invoke("SpawnRandomEnemy", Random.Range(3,5));
+        Invoke("SpawnRandomEnemy", spawnTime + 1/spawnRate);
+    }
+
+    private void Update()
+    {
+        spawnRate += Time.fixedDeltaTime/600;
+
+        if (spawnTime >= 0)
+        spawnTime -= Time.fixedDeltaTime / 600;
     }
 
     void SpawnRandomEnemy()
@@ -22,6 +32,6 @@ public class GameSpawner : MonoBehaviour
         GameObject newObject = Instantiate(enemyPrefab[enemyIndex], spawnPos, enemyPrefab[enemyIndex].transform.rotation);
         newObject.transform.SetParent(enemyParent);
 
-        Invoke("SpawnRandomEnemy", Random.Range(5, 7));
+        Invoke("SpawnRandomEnemy", spawnTime + 1 / spawnRate);
     }
 }

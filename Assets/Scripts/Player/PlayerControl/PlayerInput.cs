@@ -14,7 +14,7 @@ public class PlayerInput : MonoBehaviour
     float buttonY;
     Vector2 mousePos;
 
-    void Update()
+    protected virtual void Update()
     {
         GetInput();
         GetPlayerMove(buttonX, buttonY);
@@ -24,8 +24,8 @@ public class PlayerInput : MonoBehaviour
 
     void GetInput()
     {
-        buttonX = Input.GetAxis("Horizontal");
-        buttonY = Input.GetAxis("Vertical");
+        buttonX = Input.GetAxisRaw("Horizontal");
+        buttonY = Input.GetAxisRaw("Vertical");
         mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     }
 
